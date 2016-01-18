@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<meta name="description" content="智能社是一家专注于web前端开发技术的公司，目前主要提供JavaScript培训和HTML5培训两项服务，同时还推出了大量javascript基础知识教程，智能课堂为你带来全新的学习方法和快乐的学习体验。" />
+<title>智能社— http://www.zhinengshe.com</title>
+<style>
+*{margin:0; padding:0; list-style:none;}
+body{background:#969;}
+ul{width:480px;height:260px; margin:100px auto; position:relative; top:0; left:0;}
+ul li{width:480px;height:260px; position:absolute; top:0; left:0; opacity:0; -webkit-transform:perspective(1100px) rotateY(0deg) translateX(0px); -webkit-transition:1s all ease; }
+ul li.l2{opacity:0; z-index:1;-webkit-transform:perspective(1100px) rotateY(30deg) translateX(-240px); }
+ul li.l1{opacity:1; z-index:2;-webkit-transform:perspective(1100px) rotateY(30deg) translateX(-200px); }
+ul li.cur{opacity:1; -webkit-transform:perspective(1100px) translateZ(100px);z-index:3;}
+ul li.r1{opacity:1; z-index:2;-webkit-transform:perspective(1100px) rotateY(-30deg) translateX(200px); }
+ul li.r2{opacity:0; z-index:1;-webkit-transform:perspective(1100px) rotateY(-30deg) translateX(240px); }
+</style>
+<script>
+window.onload=function(){
+	var oBtn = document.getElementsByTagName('input')[0];
+	var oBtn2 = document.getElementsByTagName('input')[1];
+	var oUl = document.getElementsByTagName('ul')[0];
+	var aLi = oUl.children;
+	var iNow = 2;
+	oBtn.onclick=function(){
+		iNow++;
+		for(var i=0;i<aLi.length;i++){
+			aLi[i].className='';
+		}
+		aLi[(iNow-2)%aLi.length].className='l2';
+		aLi[(iNow-1)%aLi.length].className='l1';
+		aLi[iNow%aLi.length].className='cur';
+		aLi[(iNow+1)%aLi.length].className='r1';
+		aLi[(iNow+2)%aLi.length].className='r2';
+	};
+	oBtn2.onclick=function(){
+		iNow--;
+		for(var i=0;i<aLi.length;i++){
+			aLi[i].className='';
+		}
+		aLi[((iNow-2)%aLi.length+aLi.length)%aLi.length].className='l2';
+		aLi[((iNow-1)%aLi.length+aLi.length)%aLi.length].className='l1';
+		aLi[iNow%aLi.length].className='cur';
+		aLi[((iNow+1)%aLi.length+aLi.length)%aLi.length].className='r1';
+		aLi[((iNow+2)%aLi.length+aLi.length)%aLi.length].className='r2';
+	};
+};
+</script>
+</head>
+
+<body>
+<input type="button" value="下一个" />
+<input type="button" value="上一个" />
+<ul>
+	<li class="l2"><img src="img/1.jpg" /></li>
+	<li class="l1"><img src="img/2.jpg" /></li>
+	<li class="cur"><img src="img/3.jpg" /></li>
+	<li class="r1"><img src="img/4.jpg" /></li>
+	<li class="r2"><img src="img/5.jpg" /></li>
+	<li><img src="img/6.jpg" /></li>
+	<li><img src="img/7.jpg" /></li>
+	<li><img src="img/8.jpg" /></li>
+	<li><img src="img/9.jpg" /></li>
+	<li><img src="img/10.jpg" /></li>
+	<li><img src="img/11.jpg" /></li>
+	<li><img src="img/12.jpg" /></li>
+</ul>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
