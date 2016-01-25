@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>柱状图</title>
+<style>
+*{margin:0;padding:0;}
+body{background:#CCC; text-align:center;}
+canvas{background:#FFF;padding:50px}
+<!-调节柱状图之间的距离，特别是第一个->
+</style>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+
+	var oC=document.getElementsByTagName('canvas')[0];
+	var gd=oC.getContext('2d');
+	var arr=[300,100,250,150,350,200,100,50,300,200];
+	/*arr.sort(function(n1,n2){
+		return n1-n2;
+	});
+	document.write(arr);*/
+	//获取数组最大的数，作为创建柱状图高度的标准
+	var iMax=Math.max.apply(null,arr);
+	//创建一个数组，存储树状图的高度，
+	aHeight=[];
+	for(var i=0;i<arr.length;i++){
+		aHeight[i]=arr[i]/iMax*oC.height;
+	}
+	//设置柱状图的宽
+	//var w=50;
+	//重新设置柱状图的宽度，根据柱状图的个数进行自适应
+	var w=oC.width/(arr.length*3);
+	//设置柱状图的的距离
+	var space=2*w;
+	//使用canvas描边矩形，因为数组，使用for循环
+	for(var i=0;i<arr.length;i++){
+		//此时的柱状图是倒立的，所以需要调节高度h=oC.height-aHeight[i];
+		gd.strokeRect(i*w+i*space,oC.height-aHeight[i],w,aHeight[i]);
+		gd.fillStyle='rgba('+parseInt(Math.random()*255)+','+parseInt(Math.random()*255)+','+parseInt(Math.random()*255)+',0.8)';
+		//填充矩形
+		gd.fillRect(i*w+i*space,oC.height-aHeight[i],w,aHeight[i]);
+	}
+},false);
+
+</script>
+</head>
+
+<body>
+<canvas width="800" height="600">
+对不起，您的浏览器版本较低，不支持此插件
+</canvas >
+</body>
+</html>
