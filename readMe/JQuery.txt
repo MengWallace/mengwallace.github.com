@@ -1,0 +1,68 @@
+$("element *");全部选择
+$（"sele1,sele2seleN"）指定多个元素
+$("ance空格desc")ance desc层次性选择器
+$("parent>child") 获取子集元素,不包括下一级元素
+$("prev+next")查找prev元素相邻的下一个next元素
+$("prev~siblings")siblings选择器获取的元素都是prev元素之后的同辈元素
+
+$("li:first")第一行过滤选择器
+$("li:last")最后一行过滤选择器
+$("li:eq(index)")灵活选择任意一个标签元素
+$("li:contains('text')")文本内容选择器
+$("li:has('selector')")元素名称过滤选择器
+$("div:hidden")获取全部不可看见的元素
+$("p:visible")获取全部可见的元素，只要不将元素的display属性值设置为“none”，那么，都可以通过该选择器获取
+$("li[title='text']")[attribute=value]获取与属性名和属性值完全相同的全部元素，其中[]是专用于属性选择器的括号符，参数attribute表示属性名称，value参数表示属性值(text只能单引号)。
+$("li[title!='text']")[attribute!=value]属性选择器,正好相反。
+$("li[title *='text']")获取包含text的所有元素的属性选择器
+$("li:first-child")获取每一个父元素的首个元素，是一个集合
+$("li:last-child")获取每一个父元素的最后一个元素
+
+$("form :input")返回全部的表单元素
+
+=========================================================
+操作DOM
+$("#id").attr("属性名称","属性值");
+$("#id").attr("属性名称")	获取属性值
+$("#id").html()		获取元素的内容
+$("#id").txt()		获取元素的文本内容
+$("#id").html(str)	给元素设置内容
+$("#id").txt(TXT)	给元素设置文本内容
+$("#content").css({"background":"red","color":"white"});	css()给元素加样式
+$("#id").addClass("red空格white");
+$("#id").removeAttr("属性名（href）")，移除元素的属性值
+$("#id").removeClass("样式值（可以是多个）")；removeClass(),直接移除样式
+$("#id").append(content)	向元素追加内容，被追加的content参数，可以是字符、HTML元素标记，还可以是一个返回字符串内容的函数。
+$(content).appendTo("selector");把content内容插入selector元素内，默认是在尾部
+$("selector").before(content)	在同级标签的前一个插入content
+$("selector").after(content) 在同级标签的后一个插入content
+$("selector(body/div)").clone()	生成一个被选元素的副本，即复制了一个被选元素，包含它的节点、文本和属性
+$("#id")repalceWith(content);将#id的内容替换为content，content可以是html标签。
+$(content).repalceAll("#id") 功能同上
+$("#id").wrap(wrapper)	包裹元素本身
+$("#id").wrapInner(wrapper)	包裹元素中的内容
+$("#id").each(function（index）{});	遍历指定元素的集合，通过回调函数返回遍历元素的序列号
+$("#id")remove(".class")		删除所选元素本身和子元素，可以通过添加过滤参数指定需要删除某些元素
+$("id").empty()			删除所选元素的子元素
+
+=====================================================================
+取消点击功能
+ $(this).attr("disabled", "true");
+
+事件
+$(document).ready(function(){})等价于$(function(){});
+事件绑定
+$("#id").bind("event 多个事件名用空格隔开",function(){});
+切换事件
+$("#id").hover(over,out);滑进时，执行over函数；滑出时，执行out函数
+绑定多个函数
+$("id").toggle(fun1(){},fun2(){});注意与bind()的区别
+移除绑定事件
+$("#id").unbind("event多个事件用空格隔开"，fun)或者unbind("event");
+绑定元素的一次性事件
+$("#id").one("event",fun(){});
+手动触发事件
+$(selector).trigger(event)
+focus和blur事件
+focus事件在元素获取焦点时触发，blur在元素丢失焦点时触发
+

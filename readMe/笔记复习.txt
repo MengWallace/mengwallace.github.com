@@ -1,0 +1,886 @@
+﻿20151102
+1、任何元素都可以添加事件
+2、js操作Css样式和属性
+   换肤
+
+1103
+2、复合样式：background-color——backgroundColor
+3、“.”更简单
+    []点能做的[]号都能做；更灵活；仅限于属性，而不能是方法；
+    简易年历
+
+1104
+4、任何样式都可以修改 
+5、函数两个阶段：声明定义、调用（无声明会报错）
+6、换肤：修改link的href	修改class className  
+7、for循环和while循环的四步1起始条件2终止条件3执行语句4自增
+for循环作用更广，while用于循环次数不确定的情况
+   全选反选不选
+
+1105
+8、操作非表单元素 obj.innerHTML
+   操作表单元素   obj.value
+   选项卡、联动全选
+
+1106
+	字符串拼接
+   	选项卡封装
+
+1107
+9、数据类型number、
+	string
+	boolean
+	undefined 1.没有这个变量2.定义没有赋值	
+	object 通过getElementById，getElementByTagName获取
+	function 不确定；
+10、数据类型转换
+	input的值为string
+	parseInt 整数
+	PparseFloat 小数；
+	Number 都可以
+	Number('12.5px')=NaN;NaN与任何数都不想等，包括它自己
+	isNaN() 如果是NaN 那么 返回true
+
+控制流程
+
+if(){}else{}else if(){}
+var i = 5;
+switch(i){
+     case 0 ：
+	语句0
+     break;
+     case 1 ：
+	语句1
+     break;
+     case 2 ：
+	语句2
+     break;
+     case 3 ：
+	语句3
+     break;
+     case 4 ：
+	语句4
+     break;
+     case 5 ：
+	语句5
+     break;
+    default:
+	语句
+   break；
+}
+
+1109
+
+11、变量作用域
+	
+变量
+	局部变量
+	闭包
+
+生存周期:
+1.局部 	很短 	只要函数调用完成，局部变量就消失
+2.全局 	很长 	只有浏览器关闭之后才会消失。
+3.闭包 	可长可短
+		a).只要里面的函数还有用，父级的局部变量就不会消失
+		b).只要里面的函数还有用，父级所有的局部变量就不会消失
+		c).只要里面的函数还有用，整条作用域链上的变量都不会消失   	隔行变色、简易计算器、两数求和、淘宝商品广告、
+        下拉改变图片、百度输入法切换、好贷自定义切换
+1112
+12、eval
+	eval('12*5')——60
+	把字符串中的语句，变成可执行的语句。
+	容易引起：注入攻击。
+
+13、真假 空的就是假的，但空数组是真的
+
+			真的：true、非零数字、非空字符串、非空对象、数组、空数组、document
+			假的：false、数字0、空字符串、空对象、
+14、定时器
+	两种定时器
+		1s = 1000ms
+		一种：   
+			setInterval(函数，时间（毫秒数）);
+			每隔一段时间执行前面的函数，做一件事
+		二种	setTimeout（函数，时间（毫秒））；
+			多长时间以后做一件事，只做一次
+	清除定时器
+		var timer = null ;
+		timer = setInterval(fn,ms);
+		clearInterval(timer); 关闭的是第一种
+		var timer = null;
+		timer = setTimeout(fn,ms);
+		clearTimeout(timer);
+
+	随机数双色球、新浪延迟广告、文字时钟、简易秒表、作业选择器
+15、随机数
+	m,n数
+	m+Math.random()*(n-m)	m- n 小数
+	parseInt(3 +Math.random()*(11-3));		3 -11
+
+16、日起对象
+	1.日期对象
+	new 新建 创建 
+	var oDate = new Date();
+	oDate.getFullYear()  年
+	oDate.getMonth()+1  //少一个月
+	oDate.getDate() 	//日期
+	oDate.getDay()		//星期 ‘4’
+	oDate.getHours();	//小时
+	oDate.getMinutes()	//分钟
+	oDate.getSeconds()	// 秒
+第三周1117
+17、i的问题
+	 问题情况：
+	循环之中加事件，事件里面用i 那么这个i是循环的长度而不是每个对应的i得值
+   	1.把事件拿到外面的函数去加
+		addClick(aBtn[i]);
+	2.加个参数
+		index
+
+		解决了——复制一次，3次3个函数
+			函数复制的同时，内部的东西也复制，包括局部变量、参数
+			3个index
+			(重复)
+
+		addClick(aBtn[i], i)
+
+	3.函数名去了
+		(function (oBtn, index){})(aBtn[i], i);
+	()()封闭空间
+	闭包 
+	匿名函数自执行
+18、arguments
+	问题：求和函数
+		问：如何能够适应不同个数
+	arguments——是个数组
+
+判断IE6
+window.navigator.userAgent.indexOf('MSIE 6.0')!=-1
+
+19、字符串常用方法
+ indexOf('a') 		'abcdedf'	 0	字符串的位置，返回第一个结果位置
+   lastIndexOf('a')	'abcedad'	 5	后面开始找 数是从前面找
+   charAt(2)		‘abcde’		 c 	指定位置的字符
+   substring(1,3)	              'abced'	 截取字符串 如果一个值切到结束
+   split（‘&’）		 'abc&ed'	[abc,ed] 切分成数组 
+   toUpperCase		‘abcd’		ABCD   转换成大写
+   toLowerCase		'ABCD'		abcd	转换成小写
+20、数组常用方法
+数组的定义
+var arr=[1,2,3]; 常用 方便
+var arr=new Array(1,2,3); 不常用
+例子 var arr = [12,5,8];
+常用方法	例子		结果		说明
+push		arr.push(7)	[12,5,8,7]	从数组后面插入一个7
+pop		arr.pop	()	 [12,5]		从数组后面删除一个元素
+unshift		arr.unshift(7)	[ 7,12,5,8]	从数组前面插入一个元素7	
+shift		arr.shift()	 [5,8]		从数组前面删除一个元素
+splice		(起点, 个数, 元素…)	 	先删除，后插入
+删除		splice(开始,长度) arr.splice(0,2)   [8]
+插入		splice(开始, 0, 元素…)
+替换		splice(开始, 长度, 元素)					
+concat		arr.concat(arr2);		数组连接
+join		arr.join('-') 	[12-5-8	]	数组转字符串
+reverse		arr.reverse	[8,5,12]		反序
+sort		arr.sort()
+数组排序  技巧：return n1 -n2; 跟n1 n2 排列顺序一致
+var arr=['float', 'left', 'alpha', 'opacity', 'filter', 'right', 'apple', 'big', 'zoom', 'inset'];
+字典序
+21、JSON
+ JSON定义   json  JavaScript Object Notation
+json 没有length
+json 没有下标  ,只能用名字的方式
+
+//json——打包
+var json={a: 12, b: 5, c: 99};
+//{名字: 值, 名字: 值, ...}
+用JSON描述：“小明，是个前端工程师，家住杭州，今年21岁，有两个姐姐，一个叫小华，今年23岁，是个律师，另一个叫小红，是个老师，今年26岁”
+
+var 小明={职业: '前端工程师', 住址: '杭州', 年龄: 21, 亲属: [
+	{姓名: '小华', 年龄: 23, 职业: '律师'},
+	{姓名: '小红', 年龄: 26, 职业: '老师'}
+]};
+		数组			json
+下标		数字作下标 arr[0]	字符串作下标json['abc']
+长度		arr.length		无
+循环		for			for in
+
+---------------------------------------------------------------------------------------
+json和数组：
+共同点——都是存东西的
+区别：
+1.下标不同	数字、字符串
+2.length	数组有、json没有
+3.循环
+	数组	普通for
+	json	for in
+
+***for in不好，能不用尽量别用***
+---------------------------------------------------------------------------------------
+json标准&不标准
+JS里——随便
+标准写法——跟其他语言交互(后台：PHP、java)
+双引号“”
+结论：
+1.JS里随便
+2.数据交互——标准
+22、Math常用方法
+	Math的常用方法
+常用方法	例子		结果		说明
+random	Math.random()	0,1		0到1之间的小数不包括0
+floor		Math.floor(9.5)	9		向下取整
+ceil		Math.ceil(9.1);  10		向上取整
+round		Math.round(4.49999999)	四舍五入	
+sqrt		Math.sqrt(64)	8		开方
+pow		Math.pow(2, 3) 8		次幂
+1118
+23、预解析
+		alert(a);
+		var a;
+		undefined
+预解析--把定义（变量、函数、仅仅定义拿到最前面）
+1119
+24、对象引用
+	var arr = [12,5,8];
+	var arr2 = arr;
+	arr2.push(7);
+	alert(arr2); 12 5 8 7
+	alert(arr)； 12 5 8 7
+引用：对象就是引用，指的是同一个东西,一个更改另一个跟着更改
+字符串比较
+	字符串比较
+	alert('a'>'A')
+比较：对象之间比较不相等
+
+25、严格模式
+严格模式：
+	文档引入严格模式
+
+	js语言bug
+		作者：布兰登·艾克	java
+	
+	'use strict'
+
+严格模式好处：
+1. 定义变量必须加var
+2. 不允许在if、for里面定义函数
+3. 干掉with
+
+严格模式范围：
+1. 函数内部
+2. 冲不出script
+3. 文件
+*建议：每个js文件都需要加上
+
+26、undefined	
+	未定义什么时候出现？
+如果一个变量只是声明了，但是没有赋值就是undefined
+如果访问一个没有的属性，就是undefined
+如果访问一个没有值得参数，也是undefined
+
+函数
+两个阶段：
+声明 	只是告诉浏览器有这个函数，但是不会执行里面的代码
+调用 	真正的执行函数里面的代码
+
+定义和调用缺一不可。
+如果只声明了，但是没有调用，这个时候什么都不会发生。
+如果只调用了，但是没有声明，这个时候回报错
+
+闭包：子函数能调用富父函数的东西
+例子：	数组去重、清空数组、数组排序、getByClass、setStyle、99乘法表
+	期中考试题；
+
+1123-1127
+
+27、	JS的组成
+ECMA
+	翻译，核心解释器
+	平时程序都是英文、数字、符号组成，计算机只认01，咱们写的东西，系统不认识
+	作用：翻译——最核心
+DOM
+	Document Object Model	文档对象模型
+	网页是一堆文字
+	DOM可以把网页转化成可以操作的元素
+BOM
+	BOM	操作浏览器		window
+	Browser Object Model	浏览器对象模型
+
+兼容：
+ECMAScript	几乎没有兼容问题——简单、基础
+DOM		还行、凑合
+BOM		没有兼容性
+
+28、DOM
+操作元素
+获取子节点
+	父级.children	父级.children.length	父级.children[0]
+获取父节点
+	子级.parentNode
+获取首节点
+	firstElementChild||firstChild	children[0]		
+获取尾节点
+	lastElementChild||lastChild	children[length-1]
+获取上一个节点
+	previousElementSibling||previousSibling	
+获取下一个节点
+	nextElementSibling||nextSibling	
+创建一个节点
+document.createElement(标签); ->var oLi = document.createElement('li');
+先创建 后插入
+插入一个节点 appendChild 追加，向后添加
+父级.appendChild(元素); -> oUl.appendChild(oLi);
+向前插入一个节点
+父级.insertBefore(要插入的元素，位置)
+删除元素
+父级.removeChild(删谁)
+
+29、获取物理信息
+获取物体信息
+obj.offsetWidth 		获取盒子模型宽度
+obj.offsetHeight 		获取盒子模型高度
+obj.offsetLeft 			获取元素距离定位父级的左边距
+obj.offsetTop 			获取元素距离定位父级的上边距
+
+可视区宽高
+document.documentElement.clientWidth
+document.documentElement.clientHeight
+例子：
+上移下移、留言板、吸顶条、右下角悬浮框
+
+30、图片延迟加载、瀑布流、拖动改变颜色
+
+1201
+31、BOM
+	window.location	
+	window.location.href	获取url
+	window.location.hash 获取#后面的部分
+	window.location.search 获取地址栏？后面的部分
+=========================================
+设置属性 读取属性
+设置
+.value
+oDiv.setAttribute('名字'，‘值’)
+get.attribute('名字');
+[]
+=========================================
+parentNode	结构上的父级
+offsetParent	定位父级	跟position 定位有关
+
+
+32、自定输入框
+onblur onfocus
+=========================================
+33、表单
+form	表单最重要的三样东西
+	action 提交到到的地址
+	method 提交方式
+		get    通过url传递数据  不加密 		32KB  不安全
+		post  不通过url传输      url你看不见	1G      相对安全
+	
+	https://  
+	name 提交内容 
+	name是给后台
+	getElementsByName  给后台用的 通过名字获取元素
+
+34、事件对象
+ event 
+作用：事件对象包含了 这个事件的详细信息 比如：点击时候的坐标 键盘按下了什么键
+35、冒泡
+		事件从子元素 一层 一层  往上传
+		一点儿用都没有 没事还给我们找麻烦
+		冒泡机制 跟css 样式和表现没有关系
+		 跟你加没加事件没关系 仍然会往上传
+清除冒泡：ev.cancelBubble = true；
+例子：URL2JSON、JSON2URL、吸顶条、进度条，放大镜，拖拽
+
+1210 第六周
+36、事件绑定
+同一个元素可以添加多个事件
+
+事件绑定
+obj.addEventListener(sEv,fn,false);
+obj.attachEvent('on'+sEv,fn);
+解除绑定		注意：不能解除匿名
+obj.removeEventListener(sEv,fn,false);
+obj.detachEvent('on'+sEv,fn);
+
+例子：九宫格拖拽，拖拽回放，Ctrl+q切换拖拽，鼠标滚轮事件、碰撞检测
+
+
+1214 第七周 运动
+
+DOM事件
+事件
+DOMContentLoaded 		兼容IE9+，chrome，freifox
+
+document.onreadystatechange 	
+document.readyState 		改变状态
+
+interactive 		开始加载
+
+complete 			加载完成
+
+eg:domReady(fn);
+
+
+DOM事件:
+1.以DOM开头
+2.必须事件绑定
+
+事件对象
+var oEvent = ev||event;
+oEvent.clientX 		鼠标在可视区中的坐标
+oEvent.clientY 		鼠标在可视区中的坐标
+oEvent.keyCode 		键盘编码
+oEvent.ctrlKey/shiftKey/altKey 	
+oEvent.preventDefault();
+oEvent.srcElement
+oEvent.target
+oEvent.cancelBubble
+oEvent.detail
+oEvent.wheelDelta
+oEvent.relatedTarget
+oEvent.fromElement
+oEvent.toElement
+
+
+事件冒泡，阻止事件冒泡
+oEvent.cancelBubble=true;
+事件绑定
+obj.addEventListener(sEv,fn,false);
+obj.attachEvent('on'+sEv,fn);
+obj.removeEventListener(...);
+obj.detachEvent(...)
+事件委托
+事件委托(事件委派)
+作用：
+1.给未来元素加事件
+2.提高性能
+
+//获取到触发事件的源头
+oEvent.srcElement;		兼容IE，Chrome
+oEvent.target; 			兼容火狐
+
+obj.tagName 		获取标签名	注意：字母全大写
+oEvent.srcElement||oEvent.target;
+
+阻止默认事件
+return false; 		addEventListener不好使
+oEvent.preventDefault(); 	只兼容高版本浏览器
+设置捕获，释放捕获
+obj.setCapture()
+obj.releaseCapture();
+
+
+1215
+move.js 运动js文件
+例子：jiathis 鼠标控制图片放大缩小 3D立体效果 
+1215  链式运动 
+ul的宽度不够，js算
+oUl.style.width = aLi[0].offsetWidth*aLi.length+'px';
+
+线性运动，匀速运动。 			linear
+不好看，但是简单
+var a = n/count;
+start+dis*a;
+
+减速运动 						ease-out
+var a = 1-n/count;
+start+dis*(1-Math.pow(a,3));
+
+加速 							ease-in
+var a = n/count
+start+dis*Math.pow(a,3);
+
+运动框架
+
+move(obj,iTarget,time) 				最简单运动
+move(obj,sName,iTarge,time) 		带名字
+move(obj,json,time); 				多样式操作
+move(obj,json,time,type) 			多运动类型
+move(obj,json,time,type,fnEnd) 		链式运动
+
+move(obj,json,options);
+
+
+options{time:100,type:'ease-int',end:function(){}}
+
+标准命名:
+options{duration:100,easing:'ease-int',complete:function(){}}
+duration 		时间 		time
+easing 			运动类型	type
+complete 		链式 		end
+例子：轮播图（方向/渐变） 手风琴 百度贴吧时钟 回到顶部 无缝滚动
+
+37、1221JQuery
+原生					jquery
+window.onload 			$(function(){});
+getElementById 			$('#id');
+oBtn.onclick=fn 		oBtn.click(function(){});
+
+
+click(function(){});
+mouseover(function(){});
+mouseout(function(){});
+
+hover(fn1,fn2) 		
+
+.show() 			显示
+.hide() 			隐藏
+
+toggle(fn1,fn2) 			切换
+
+toggle(fn1,fn2,fn3,fn4......)
+
+
+前面要加stop
+fadeIn 			淡入
+fadeOut 		淡出
+
+slideDown 		滑入
+slideUp 		滑出
+
+jquery运动
+animate 			动画
+
+jquery选择器 		跟css一模一样
+$('#id') 			id选择器
+$('.class') 		class选择器
+$('tag') 			标签选择器
+
+属性选择器
+$('input[属性名=属性值]')
+
+
+伪类选择器
+:first 			第一个
+:last 			最后一个
+:even 			偶数行
+:odd 			奇数行
+
+:eq 			等于
+:lt 			小于
+:gt 			大于
+
+:contains 		包含文本
+:has 			包含标签
+
+===================================================
+操作css
+obj.css('样式名','样式值'); 		设置一个样式
+obj.css({样式名:样式值,样式名:样式值});	批量设置样式
+obj.css('样式名'); 					获取样式
+操作属性
+obj.attr('属性名','属性值'); 		设置一个属性
+obj.attr({属性名:属性值,属性名:属性值}); 批量设置属性
+obj.attr('属性名'); 				获取一个属性值
+操作class
+addClass(sClass); 				添加class
+removeClass(sClass); 			删除class
+
+操作内容
+表单元素
+.val() 			获取值
+.val('') 		设置值
+非表单元素
+.html() 		获取内容
+.html('') 		设置内容
+
+jquery获取元素下标
+.index();
+
+
+38、1225 ajax
+ajax 	Asynchronous Javascript And XML
+		异步javascript和xml
+
+		无刷新从服务器取数据
+	2.ajax交互拿到的都是字符串
+		eval
+	
+写ajax步骤
+1.创建一个ajax
+var oAjax = new XMLHttpRequest(); 	
+不兼容IE6
+
+IE6本身就没有ajax
+用插件
+var oAjax = new ActiveXObject('Microsoft.XMLHTTP');
+兼容IE6,7,8
+
+真假可以判断，报错不可以判断
+
+window.XMLHttpRequest
+访问一个不存在的属性，就是undefined
+
+	兼容：
+		if(window.XMLHttpRequest){
+			var oAjax = new XMLHttpRequest();
+		}else{
+ 			var oAjax = new ActiveXObject('Microsoft.XMLHTTP');
+		}
+
+2.打开连接 					true
+oAjax.open('提交方式',url,是否异步);
+	提交方式
+	GET 		POST
+
+	异步 	同时只能做一件事 	程序：同时做多件
+	同步 	同时做多件事 		程序：同时只能做一件
+
+GET
+oAjax.open('GET',url+'?'+data,true);
+oAjax.send();
+POST
+oAjax.open('POST',url,true);
+oAjax.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+oAjax.send(data);
+
+3.发送
+oAjax.send();
+4.接收
+oAjax.statechange=function(){
+ 	if(oAjax.readyState==4){
+ 		//成功
+ 		//判断http状态是否成功
+ 		//http状态码
+ 		//304 Not Modified
+ 		if(oAjax.status>=200&&oAjax.status<300||oAjax.status==304){
+ 			成功
+ 			oAjax.responseText
+ 			成功之后获取到的结果
+ 		}else{
+ 			失败
+ 		}
+ 	}
+};
+oAjax.readyState 		工作状态
+0 	准备成功，未发送
+1 	发送成功
+2 	接收原始数据完成
+3 	解析原始数据
+4 	完成
+
+39、正则表达式
+^		行首
+$ 		行尾
+
+小说格式整理。
+
+m  	muti-line 		多行模式
+
+单行模式 		不加m
+^ 			整个只有一个行首
+$ 			整个只有一个行尾
+多行模式 		加m
+^ 			有多个行首
+$ 			有多个行尾
+
+选项
+i 		ignore 			忽略大小写
+m 		muti-line 		多行模式
+g 		global 			全局匹配
+
+
+=============================================
+[] 
+1.任选一个
+/a[abc]c/
+aac 		√
+abc 		√
+acc 		√
+aabcc 		×
+
+/a[d+]c/
+
+adddddddc 		√
+adc 			√
+ac 				×
+
+/a[df+]c/
+affffffffc 		√
+adc 			√
+adfdfdfdfc 		×
+
+/a[(df)+]c/
+adfdfdfdfdfc 		√
+adfdfdfdfdc 		×
+
+/a[d+f+]c/
+addddddddc			 √
+affffffffc			√
+
+/[a,b,c]/ 			a或b或c或,
+
+
+2.范围
+
+[a-z]			a到z的所有小写英文字母
+[A-Z] 			A到Z的所有大写英文字母
+[0-9] 			0到9的所有数字
+
+[13-69] 		1 3 4 5 6 9
+
+
+[a-zA-Z0-9] 	所有英文字母和数字
+
+3.排除
+[^0-9] 			除了数字
+[^a-z] 			除了小写字母
+[^A-Z]			除了大写字母
+[^0-9a-zA-Z] 	除了数字和英文字母
+
+[0-9^a-z] 		×
+
+============================================
+量词
+{n}			有n个
+{n,m} 		最少有n个，最多有m个
+{n,} 		最少有n个，最多不限
+
+{0,1} 		有一个，或者没有
+{0,} 		有没有都行
+{1,} 		最少一个，最多不限
+
+? 	{0,1} 	有一个，或者没有
++ 	{1,} 	最少一个，最多不限		推荐
+* 	{0,} 	有没有都行 				不推荐
+
+============================================
+转义
+\d 				所有数字
+[0-9]
+\w 				所有数字，英文，_
+[0-9a-zA-Z_]
+\s 				所有空白符号,空格、tab、换行
+
+\D 				除了数字
+\W 				除了数字，英文，_
+\S 				除了空白符号
+
+. 				点代表，所有的东西
+
+/./ 		代表所有
+/\./		代表单纯的.
+
+=========================================================
+node.js
+cd+空格+.. 返回上一层目录
+性能高
+
+sea.js
+
+=================================================================
+面试
+
+跨域问题：
+jsonp
+iframe
+代理
+
+Flash、Ajax各自的优缺点，在使用中如何取舍？
+
+Flash适合处理多媒体、矢量图形、访问机器；对CSS、处理文本上不足，不容易被搜索。
+Ajax对CSS、文本支持很好，支持搜索；多媒体、矢量图形、机器访问不足。
+共同点：与服务器的无刷新传递消息、用户离线和在线状态、操作DOM
+
+网络优化：
+1.减少http请求:
+100文件 100连接  100请求  100等待  100接收
+1文件 	1连接 		1请求 	1等待 	1接收
+
+合并js文件，css文件，图片.
+为了减少http请求，减轻服务器压力。提高性能
+
+2.代码压缩
+
+3.合并
+
+4.gzip. 服务器来做的压缩。
+
+5.图片延迟加载，懒加载。
+
+6.js阻塞加载
+	
+	加载js的时候，其他的东西都不加载
+
+	工作怎么做：
+	把script放到最下面
+	css放上面
+
+7.CDN 		Content Delivery Network
+使内容传输的更快、更稳定、更安全
+
+HTML5z新增
+拖拽释放(Drag and drop) API 
+  语义化更好的内容标签（header,nav,footer,aside,article,section）
+  音频、视频API(audio,video)
+  画布(Canvas) API
+  地理(Geolocation) API
+  本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失；
+  sessionStorage 的数据在浏览器关闭后自动删除
+
+  表单控件，calendar、date、time、email、url、search  
+  新的技术webworker, websocket, Geolocatio
+ie6bug
+----------------------------
+	双边距bug
+		左浮动左margin
+
+		display:inline;
+
+	li下多出几像素边距
+		子级浮动
+		vertical-align:top;
+
+	单像素bug
+		给了单数
+		给双数
+
+	ie6最小高度
+		小于20px
+		overflow:hidden;
+
+	IE6子级撑开父级
+		不允许子级超过父级
+		overflow:hidden;
+
+	三像素bug
+		同级元素有没有浮动的
+		都加浮动
+
+	line-height失效
+		文字和行内块排一起
+		margin-top挤
+
+	png半透明
+		不支持半透明
+		加滤镜
+		<!--[if IE 6]>
+		<script src="js/DD_belatedPNG.js"></script>
+		<script>
+			DD_belatedPNG.fix('.png');
+		</script>
+		<![endif]-->
+
+	多出来的猪
+		浮动元素中加注释
+		background:none;	加背景色
+
+	id6下只支持ahover
+		用包起来
+		js
+
+	子级超出
+		父级加overflow:hidden;
+
+	haslayout
+
+	ie6 	下划线_
+	ie7	*+html
+	ie8	\0
+	ie9	\9
+
+	总结
+		IE6就是一大坑！！！
