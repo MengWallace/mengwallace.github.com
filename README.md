@@ -1,2 +1,2 @@
 # mengwallace.github.com
-this is my website
+this is my Blog
