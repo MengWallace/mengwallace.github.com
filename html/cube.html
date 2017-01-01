@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JSTYPE</title>
+<!-- <body>
+	<script type="text/javascript">
+	'use strict';
+	//undefined
+		// var a;
+		// alert(typeof(a));
+		// console.log(a);
+		// var b=true;
+		// alert(typeof(b));
+		// var c= b.toString();
+		// console.log(typeof(c));
+
+		//string
+
+		//toString()
+		// var sA=10;
+		// console.log('sA is'+sA.toString());
+		// console.log('sA is '+typeof(sA.toString()));
+		// console.log('sA(2) is '+sA.toString(10));
+		// console.log('sA(2) is '+typeof(sA.toString(2)));
+		// console.log('sA(16) is '+sA.toString(16));
+
+		//chartAt();
+		// var str="abc def";
+		// console.log(str.charAt(1));
+		// console.log(str.charAt(3));
+		// console.log(str.charCodeAt(1));
+		// console.log(str.charCodeAt(3));
+		
+		//trim();
+		// var str=" abc dcef ";
+		// console.log(str.trim());
+		
+		 //indexOf
+		//  var str ="abc dbcbef";
+		// console.log(str.indexOf("bc"));
+		// console.log(str.lastIndexOf("bc"));
+		// console.log(str.indexOf("g"));
+		
+		//concat();
+		// var str="abc";
+		// var str1="def";
+		// console.log(str.concat(str1));
+		// console.log(str.concat("str1"));
+		// console.log(str.concat(str1,"str1"));
+		
+		//slice(num,option);
+		// var str="abc def";
+		// console.log(str.length);
+		// console.log(str.slice(4)); //def
+		// console.log(str.slice(4,5)); //d
+		// console.log(str.slice(4,10));//def
+		// console.log(str.slice(4,1));//空
+		// console.log(str.slice(-3));//等价于console.log(str.slice(4));
+		// console.log(str.slice(-8));//等价于console.log(str.slice(0));
+		// console.log(str.slice(4,-1));//等价于console.log(str.slice(4,6));
+		// console.log(str.slice(4,-3));//等价于console.log(str.slice(4,4));
+		
+		//substring(num,option);
+		// var str="abc def";
+		// console.log(str.substring(4));
+		// console.log(str.substring(4,5));
+		// console.log(str.substring(4,10));
+		// console.log(str.substring(-3));//等价于console.log(str.substring(0));
+		// console.log(str.substring(10,4));//等价于console.log(str.substring(0，4));
+	
+		//substr(num,option);
+		// var str="abc def";
+		// console.log(str.substr(2));
+		// console.log(str.substr(2,4));
+		// console.log(str.substr(2,0));
+		// console.log(str.substr(2,-1));//等价于console.log(str.substr(2,0));
+		
+		//undefined
+		// var a=undefined;
+		// console.log(typeof(a));
+		// var b;
+		// console.log(typeof(b));
+		// console.log(b);
+		// var c
+		// console.log(c);
+		// console.log(typeof(c));
+		// d;
+		// console.log(typeof(d));
+		//null
+		// console.log(typeof(null));
+		// console.log(null===undefined);
+
+		//number
+		// console.log(parseInt("123abc"));
+		// console.log(parseInt("123.123"));
+		// console.log(parseInt(" "));
+		// console.log(parseInt("AF"));
+		// console.log(parseInt("AF",16));
+
+		//boolean
+		// var a=true;
+		// var a1=false;
+		// console.log(Boolean(undefined));
+		// console.log(Boolean(" "));
+		// console.log(Boolean(NaN));
+		// console.log(Boolean(null));
+		// console.log(Boolean(0));
+
+	</script>
+</body> -->
+<style>
+body{
+	background:black;
+	overflow:hidden;
+	transform-style:preserve-3d;
+}
+.container{
+	width:100px;
+	height:100px;
+	position:absolute;
+	transform-style:preserve-3d;
+	transform:rotateX(-45deg) rotateY(30deg) translate(-50%,-50%);
+	top:40%;
+	left:50%;
+}
+ul{
+	list-style:none;
+	padding-left:0px;
+	width:100px;
+	height:100px;
+	position:absolute;
+	transform-style:preserve-3d;
+}
+ul li{
+	width:100px;
+	height:100px;
+	position:absolute;
+	background:gray;
+}
+ul li:nth-of-type(1) {
+	transform:translateX(-50px) rotateY(-90deg);
+}
+ul li:nth-of-type(2) {
+	transform:translateY(-50px) rotateX(90deg);
+}
+ul li:nth-of-type(3) {
+	transform:translateZ(50px) rotateY(0deg);
+}
+ul li:nth-of-type(4) {
+	transform:translateZ(-50px) rotateY(180deg);
+}
+ul li:nth-of-type(5) {
+	transform:translateY(50px) rotateX(90deg);
+}
+ul li:nth-of-type(6) {
+	transform:translateX(50px) rotateY(90deg);
+}
+/*left face*/
+ul[data-x="-1"] li:nth-of-type(1){
+	background:purple;
+}
+
+/*right face*/
+ul[data-x="1"] li:nth-of-type(6){
+	background:red;
+}
+
+/*top face*/
+ul[data-y="-1"] li:nth-of-type(2){
+	background:blue;
+}
+
+/*bottom face*/
+ul[data-y="1"] li:nth-of-type(5){
+	background:green;
+}
+
+/*front face*/
+ul[data-z="1"] li:nth-of-type(3){
+	background:white;
+}
+
+/*back face*/
+ul[data-z="-1"] li:nth-of-type(4){
+	background:yellow;
+}
+ul li span{
+	color:silver;
+	font-size:30px;
+	display:block;
+	width:30px;
+	height:30px;
+	position:absolute;
+	text-align:center;
+	line-height:30px;
+	display:none;
+}
+ul li span:nth-of-type(1){
+	top:35px;
+	left:10px;
+}
+ul li span:nth-of-type(2){
+	top:10px;
+	left:35px;
+}
+ul li span:nth-of-type(3){
+	top:35px;
+	right:10px;
+}
+ul li span:nth-of-type(4){
+	bottom:10px;
+	left:35px;
+}
+ul li:hover span{
+	display:block;
+}
+ul li:hover span:hover{
+	cursor:pointer;
+}
+</style>
+<style id="keyframes"></style>
+</head>
+<body>
+	<div class="container"></div>
+</body>
+<script type="text/template" id="template">
+	<li>
+		<span data-action="left">⇐</span>
+		<span data-action="up">⇑</span>
+		<span data-action="right">⇒</span>
+		<span data-action="down">⇓</span>
+	</li>
+</script>
+<script>
+
+var cube = {
+
+	init: function() {
+		// 生成dom节点
+		var container = document.querySelector('.container');
+		var template = document.querySelector('#template');
+		var indexs = [-1, 0, 1];
+		var num = 1;
+		this.blocks = [];
+		for (var k = 0; k < 3; k++) {
+			for (var j = 0; j < 3; j++) {
+				for (var i = 0; i < 3; i++) {
+					var ul =  document.createElement('ul');
+					var transform = ['translateX(', indexs[i] * 110, 'px)',
+									'translateY(', indexs[j] * 110, 'px)',
+									'translateZ(', indexs[k] * 110, 'px)'].join('');
+					ul.style.setProperty('transform', transform);
+					
+					ul.setAttribute('data-num', num++);
+					
+					ul.setAttribute('data-x', indexs[i]);
+					ul.setAttribute('data-y', indexs[j]);
+					ul.setAttribute('data-z', indexs[k]);
+					ul.setAttribute('data-coordinate', [indexs[i], indexs[j], indexs[k]].join(''));
+					ul.x = indexs[i];
+					ul.y = indexs[j];
+					ul.z = indexs[k];
+					
+					var html = template.innerHTML;
+					var htmls = [html, html, html, html, html, html];
+					ul.innerHTML = htmls.join('');
+					this.blocks.push(ul);
+					container.appendChild(ul);
+				}
+			}
+		}
+		this.bindEvent();
+	},
+	
+	bindEvent: function() {
+		var self = this;
+		document.addEventListener('click', function(e) {
+			var target = e.target;
+			if (target.nodeName.toLowerCase() == 'span') {
+				var action;
+				(action = target.getAttribute('data-action')) && this.actionDirector(target.parentNode, action);
+				e.stopPropagation();
+			}
+		}.bind(this));
+	},
+	
+	actionDirector: function(li, action) {
+		var ul = li.parentNode;
+		var index = [].indexOf.call(ul.children, li);
+		var mapping = ['left', 'top', 'front', 'back', 'bottom', 'right'];
+		var faceName = mapping[index];
+		var configs = {
+			left: {
+				up: {
+					axis: 'z',
+					direction: 1
+				},
+				down: {
+					axis: 'z',
+					direction: -1
+				},
+				left: {
+					axis: 'y',
+					direction: -1
+				},
+				right: {
+					axis: 'y',
+					direction: 1
+				}
+			},
+			right: {
+				up: {
+					axis: 'z',
+					direction: -1
+				},
+				down: {
+					axis: 'z',
+					direction: 1
+				},
+				left: {
+					axis: 'y',
+					direction: -1
+				},
+				right: {
+					axis: 'y',
+					direction: 1
+				}
+			},
+			top: {
+				up: {
+					axis: 'x',
+					direction: 1
+				},
+				down: {
+					axis: 'x',
+					direction: -1
+				},
+				left: {
+					axis: 'z',
+					direction: -1
+				},
+				right: {
+					axis: 'z',
+					direction: 1
+				}
+			},
+			bottom: {
+				up: {
+					axis: 'x',
+					direction: -1
+				},
+				down: {
+					axis: 'x',
+					direction: 1
+				},
+				left: {
+					axis: 'z',
+					direction: 1
+				},
+				right: {
+					axis: 'z',
+					direction: -1
+				}
+			},
+			front: {
+				up: {
+					axis: 'x',
+					direction: 1
+				},
+				down: {
+					axis: 'x',
+					direction: -1
+				},
+				left: {
+					axis: 'y',
+					direction: -1
+				},
+				right: {
+					axis: 'y',
+					direction: 1
+				}
+			},
+			back: {
+				up: {
+					axis: 'x',
+					direction: -1
+				},
+				down: {
+					axis: 'x',
+					direction: 1
+				},
+				left: {
+					axis: 'y',
+					direction: -1
+				},
+				right: {
+					axis: 'y',
+					direction: 1
+				}
+			}
+		};
+		var config = configs[faceName][action];
+		this.changeKeyframes(config.axis, ul[config.axis], config.direction);
+		this.rotateFace(config.axis, ul[config.axis], config.direction).forEach(function(block) {
+			block.className = 'rotate' + block.getAttribute('data-coordinate');
+		})
+	},
+	
+	changeKeyframes: function(axis, index, direction) {
+		var face = this.getFace(axis, index);
+		var style = document.querySelector('#keyframes');
+		style.innerHTML = "";
+		for (var i = 0; i < face.length; i++) {
+			var transform = getComputedStyle(face[i]).getPropertyValue('transform');
+			var x = face[i].x;
+			var y = face[i].y;
+			var z = face[i].z;
+			
+			var className = "rotate" + face[i].getAttribute('data-coordinate');
+			var origin = {
+				x: [(-x) * 110 +  50, (-y) * 110 + 50, (-z) * 110],
+			}
+			var origin = origin.x[0] + 'px ' + origin.x[1] + 'px ' + origin.x[2] + 'px ';
+			style.innerHTML += "." + className + " { animation: " + className + " 1s linear backwards; transform-origin: " + origin + "} @keyframes " + className + "{ to{ transform:" + transform + " rotate" + axis.toUpperCase() + "(" + direction * 90 + "deg); } }"
+		}
+	},
+	
+	// 获取一面 比如x轴第1面 axis = 'x' index = 1
+	getFace: function(axis, index) {
+		return this.blocks.filter(function(block) {
+			return block[axis] == index;
+		});
+	},
+	
+	// 获取一条 
+	getBar: function(axis, index, faceName) {
+		var face = this.getFace(axis, index);
+		var configs = {
+			x: {
+				front: {
+					axis: 'z',
+					index: 1,
+					sortAxis: 'y',
+					sortDirection: 1,
+					faceIndex: 3
+				},
+				back: {
+					axis: 'z',
+					index: -1,
+					sortAxis: 'y',
+					sortDirection: -1,
+					faceIndex: 4
+				},
+				top: {
+					axis: 'y',
+					index: -1,
+					sortAxis: 'z',
+					sortDirection: 1,
+					faceIndex: 2
+				},
+				bottom: {
+					axis: 'y',
+					index: 1,
+					sortAxis: 'z',
+					sortDirection: -1,
+					faceIndex: 5
+				}
+			},
+			y: {
+				front: {
+					axis: 'z',
+					sortAxis: 'x',
+					sortDirection: 1,
+					index: 1,
+					faceIndex: 3
+				},
+				back: {
+					axis: 'z',
+					sortAxis: 'x',
+					sortDirection: -1,
+					index: -1,
+					faceIndex: 4
+				},
+				left: {
+					axis: 'x',
+					sortAxis: 'z',
+					sortDirection: 1,
+					index: -1,
+					faceIndex: 1
+				},
+				right: {
+					axis: 'x',
+					sortAxis: 'z',
+					sortDirection: -1,
+					index: 1,
+					faceIndex: 6
+				}
+			},
+			z: {
+				top: {
+					axis: 'y',
+					sortAxis: 'x',
+					sortDirection: 1,
+					index: -1,
+					faceIndex: 2
+				},
+				bottom: {
+					axis: 'y',
+					sortAxis: 'x',
+					sortDirection: -1,
+					index: 1,
+					faceIndex: 5
+				},
+				left: {
+					axis: 'x',
+					sortAxis: 'y',
+					sortDirection: -1,
+					index: -1,
+					faceIndex: 1
+				},
+				right: {
+					axis: 'x',
+					sortAxis: 'y',
+					sortDirection: 1,
+					index: 1,
+					faceIndex: 6
+				}
+			}
+		};
+		var config = configs[axis][faceName];
+		return face.filter(function(block) {
+			return block[config.axis] == config.index;
+		}).sort(function(a, b) {
+			if (a[config.sortAxis] < b[config.sortAxis]) {
+				return -1 * config.sortDirection;
+			}
+			if (a[config.sortAxis] > b[config.sortAxis]) {
+				return 1 * config.sortDirection;
+			}
+			return 0;
+		}).map(function(block) {
+			var a, b;
+			(axis == 'x') && (a = 1, b = 6);
+			(axis == 'y') && (a = 2, b = 5);
+			(axis == 'z') && (a = 3, b = 4);
+			return [block.querySelector('li:nth-of-type(' + config.faceIndex + ')'), 		
+				block.querySelector('li:nth-of-type(' + a + ')'),
+				block.querySelector('li:nth-of-type(' + b + ')')
+			];
+		});
+	},
+	
+	// axis表示坐标轴 'x'、'y'、'z'
+	// index-1 0 1 左中右
+	// direction 1 -1 旋转方向
+	rotateFace: function(axis, index, direction) {
+		var results = this.getFace(axis, index);
+		var self = this;
+		var length = results.length;
+		var block = results[length - 1];
+		block.end && block.removeEventListener('animationend', block.end, false);
+		
+		block.addEventListener('animationend', block.end = function rotate() {
+			if (rotate.already) return;
+			rotate.already = true;
+			self.changeColor(axis, index, direction);
+		}, false);
+		return results;
+	},
+	
+
+	changeColor: function(axis, index, direction) {
+		var face = this.getFace(axis, index);
+		var configs = {
+			x :['front', 'top', 'back', 'bottom', 'front'],
+			y: ['front', 'right', 'back', 'left', 'front'],
+			z: ['top', 'right', 'bottom', 'left', 'top']
+		};
+		var config = (direction == 1) ? configs[axis] : configs[axis].reverse();
+
+		var self = this;
+		var arr = config.map(function(faceName) {
+			return self.getBar(axis, index, faceName);
+		});
+		
+		var colors = arr.map(function(array) {
+			return array.map(function(lists) {
+				return lists.map(function(li) {
+					return getComputedStyle(li).getPropertyValue('background-color');
+				})
+			});
+		});
+		arr.forEach(function(array, i) {
+			array.forEach(function(list, j) {
+				list.forEach(function(li, k) {
+					if ((i > 0) ) {
+						li.style.setProperty('background-color', colors[i - 1][j][k])
+					}
+				});
+			});
+		});
+	}
+};
+cube.init();
+</script>
+<script>
+var flag;
+function direction(e) {
+	var position = direction.position = direction.position || {x: 0, y: 0};
+	var x = e.x;
+	var y = e.y;
+	var r = {};
+	r.x = Math.abs(y - position.y) < 2 ? 0 : y < position.y ? 1 : -1;
+	r.y = Math.abs(x - position.x) < 2 ? 0 : x < position.x ? 1 : -1;
+	direction.position.x = x;
+	direction.position.y = y;
+	return r;
+}
+var container = document.querySelector('.container');
+document.addEventListener('mousemove', function(e) {
+	if (!flag) return; 
+	var transform = getComputedStyle(container).getPropertyValue('transform');
+	var r = direction(e);
+	container.style.setProperty('transform', transform + 'rotateX(' + r.x * 2 + 'deg) rotateY(' + r.y * 1.5  + 'deg)');
+}, false);
+
+document.addEventListener('mousedown', function(e) {
+	flag = true;
+}, false);
+document.addEventListener('mouseup', function(e) {
+	flag = false;
+}, false);
+</script>
+</html>
