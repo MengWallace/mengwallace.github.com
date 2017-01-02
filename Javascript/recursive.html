@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>recursive</title>
+</head>
+<body>
+<script type="text/javascript">
+//'use strict';
+	// function factorial(num){
+	// 	if(num <= 1){
+	// 		return 1;
+	// 	}else{
+	// 		return num *factorial(num-1);
+	// 	}
+	// }
+	// var ff = factorial;
+	//alert(ff(4));
+	// factorial = null;
+	// alert(ff(4));
+	function factorial1(num){
+		if(num <= 1){
+			return 1;
+		}else {
+			return num * arguments.callee(num-1);
+		}
+	}
+	var ff = factorial1;
+	factorial1 = null;
+	//alert(ff(3));
+	alert(ff(3));
+	var factorial2 =(function f(num){
+		if(num <= 1){
+			return 1;
+		}else {
+			return num * f(num-1);
+		}
+	});
+	//alert(factorial(2));
+</script>
+	
+</body>
+</html>
