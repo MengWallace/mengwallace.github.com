@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>EventUtil</title>
+</head>
+<body>
+	<script>
+		var eventUtil = {
+			//分别使用DOM0，DOM2，IE添加事件（添加事件的元素，事件名称，函数）
+			addHandler: function(element, type, handler) {
+				if(element.addEventListener) {
+					element.addEventListener(type, handler, false);
+				}else if (element.attachEvent) {
+					element.attachEvent('on'+type, handler);
+				}else{
+					element['on'+type] = handler;
+				}
+			},
+			removeHandler: function(element, type, handler) {
+				if(element.removeEventListener){
+					element.removeEventListener(type, handler, false);
+				}else if (element.detachEvent) {
+					element.detachEvent('on'+type, handler);
+				}else(){
+					element['on'+type] = null;
+				}
+			}
+		};
+		//执行
+		eventUtil.addHandler(btn,'click',handler);
+	</script>
+	
+</body>
+</html>
