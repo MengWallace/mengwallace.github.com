@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>eventUtil</title>
+</head>
+	<style>
+		#myBtn{
+			width: 100px;
+			height: 60px;
+			border: 1px solid #ccc;
+		}
+	</style>
+<body>
+	<div id="myBtn"></div>
+	<a href="https://www.baidu.com" id = "mylink">baidu</a>
+	<script>
+		var Event = {
+			addHandler: function(element,type,handler) {
+				if(element.addEventListener) {
+					element.addEventListener(type,handler,false);
+				}else if(element.attachEvent) {
+					element.attachEvent("on"+type,handler);
+				}else {
+					element["on"+type] = handler;
+				}
+			},
+			removeHandler:function(element,type,handler){
+				if(element.removeEventListener) {
+					element.removeEventListener(type, handler,false);
+				}else if(element.detachEvent) {
+					element.detachEvent("on"+type, handler);
+
+				}else {
+					element["on"+type] = handler;
+				}
+
+			},
+			getEvent: function(event) {
+				return event ? event : window.event ;
+			},
+			getTarget: function(event) {
+				return event.target || event.srcElement ;
+			},
+			preventDefault: function(event) {
+				if(event.preventDefault) {
+					event.preventDefault();
+				}else {
+					event.returnValue = false;
+				}
+			},
+			stopPropagation: function(event) {
+				if(event.stopPropagation) {
+					event.stopPropagation();
+				}else {
+					event.cancelBuble = true ;
+				}
+			}
+
+		};
+		var btn = document.querySelector("#myBtn");
+		var link = document.querySelector("#mylink");
+		btn.onclick = function(event) {
+			event = Event.getEvent(event);
+			console.log(event);
+			var target = Event.getTarget(event);
+			console.log("target="+ target);
+
+
+		};
+		link.onclick = function(event) {
+			alert(1);
+			event = Event.getEvent(event);
+			Event.preventDefault(event);
+			console.log(event);
+		}
+
+
+	</script>
+	
+</body>
+</html>
