@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>preventDefault</title>
+</head>
+<body>
+	<a href="https://www.baidu.com" id = "mylink">baidu</a>
+	<script>
+		var myLink = document.querySelector("#mylink");
+		myLink.onclick = function(event){
+			event.preventDefault();
+		}
+	</script>
+	
+</body>
+</html>

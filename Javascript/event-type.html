@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>type</title>
+	<style>
+		#myBtn{
+			width: 100px;
+			height: 60px;
+			border: 1px solid #ccc;
+		}
+	</style>
+</head>
+<body>
+	<div id="myBtn"></div>
+	<script>
+		var btn = document.querySelector("#myBtn");
+		var handler = function(event) {
+			switch(event.type){
+				case "click":
+				console.log("Clicked");
+				break;
+
+				case "mouseover":
+				event.target.style.backgroundColor = "red";
+				break;
+
+				case "mouseout":
+				event.target.style.backgroundColor = "";
+				break;
+
+			}
+		}
+		btn.onclick = handler;
+		btn.onmouseover = handler;
+		btn.onmouseout = handler;
+	</script>
+</body>
+</html>
