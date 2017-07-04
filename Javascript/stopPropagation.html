@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>stopPropagation</title>
+	<style>
+		#myBtn{
+			width: 100px;
+			height: 60px;
+			border: 1px solid #ccc;
+		}
+	</style>
+</head>
+<body>
+	<div id="myBtn"></div>
+	<script>
+		var btn = document.querySelector("#myBtn");
+		btn.onclick = function(event) {
+			console.log("clicked");
+			event.stopPropagation();
+
+		};
+		document.body.onclick = function(event){
+			console.log("Body clicked");
+			this.style.backgroundColor="red";
+		}
+	</script>
+</body>
+</html>
