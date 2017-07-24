@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>load</title>
+</head>
+<body>
+	<script>
+		Event.addHandler(window,"load", function() {
+			var Img = document.createElement("img");
+			Event.addHandler(Img,"load", function(event) {
+				event = Event.getEvent(event);
+				console.log(Event.getTarget(event).src);
+			});
+			Img.src = "s.gif";
+			document.appendChild(Img);
+
+		});
+		Event.addHandler(window, 'load' function() {
+			var link = document.createElement("link");
+			link:{
+				type:"text/css",
+				rel:"stylesheet"
+			};
+			
+		})
+	</script>
+	<script src="./Event.js" type="text/javascript" charset="utf-8" ></script>
+</body>
+</html>
