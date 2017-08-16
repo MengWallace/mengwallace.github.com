@@ -9,4 +9,3 @@ function* fibs() {
 
 var [first,second, third, fourth, fifth,sixth ] = fibs();
 console.log(sixth);
-console.log(a);
